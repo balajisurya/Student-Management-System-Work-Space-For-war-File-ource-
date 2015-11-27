@@ -65,8 +65,9 @@ static ServletContext sc;
         		user.setUserType(userManagementRs.getString("type"));
         		user.setCreatedBy(userManagementRs.getString("created_by"));
         		user.setCreatedDate(userManagementRs.getTimestamp("created_date"));
-        		user.setStatusId(userManagementRs.getInt("status"));
+        		user.setUserStatusTitle(getStatusTitle(userManagementRs.getInt("status")));
         		returnUsersList.add(user);
+        		
         	}
     	}catch(Exception e){
     		System.out.println("Exception in Getting Users List "+e);

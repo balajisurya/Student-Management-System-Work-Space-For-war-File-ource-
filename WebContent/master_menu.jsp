@@ -27,7 +27,7 @@
     <link href="css/icheck/flat/green.css" rel="stylesheet" />
     <link href="css/floatexamples.css" rel="stylesheet" type="text/css" />
 
-    <script src="js/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
     <script src="js/nprogress.js"></script>
     <script>
         NProgress.start();
@@ -42,7 +42,8 @@
                 <div class="left_col scroll-view">
 
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>JD Software </span></a>
+                        <a href="index.html" class="site_title"><img style="max-width:150px;max-height:100px;margin-left: 5px"
+             src="images/jdlogo.png"></img></a>
                     </div>
                     <div class="clearfix"></div>
 

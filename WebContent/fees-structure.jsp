@@ -31,7 +31,7 @@
     <link href="css/select/select2.min.css" rel="stylesheet">
     <!-- switchery -->
     <link rel="stylesheet" href="css/switchery/switchery.min.css" />
-    <script src="js/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
 </head>
 <body class="nav-md">
   <div class="container body">
@@ -46,74 +46,66 @@
  				</div> 
  				  <div class="x_title">
  				  <div class="clearfix">
- 				  <input type="button" class="btn btn-primary" name="answer" value="CREATE FEES STRUCTURE" onclick="showDiv()"/>
+ 				  <button type="button" class="btn btn-primary col-md-3" name="addFeesStructure" onclick="showDiv()"><span class="glyphicon glyphicon-plus-sign" ></span>  Create New Fees Structure</button>
+ 				  <button type="button" class="btn btn-success col-md-2" name="importExcel"><span class="glyphicon glyphicon-upload" ></span>  Export Excel</button>
+ 				  <button type="button" class="btn btn-warning col-md-1" name="print"><span class="glyphicon glyphicon-print" ></span>  Print</button>
+ 				  <input type="text" class="form-control col-md-2" id="search" placeholder="Search Fees Structure " style="width: 200px;margin-left: 300px"/>
  				  </div>
  				</div>
  					<%
  					FeesTemplateController feesTemplateController=new FeesTemplateController();
  					CurrencyController currencyController=new CurrencyController();
- 					ArrayList<FeesTemplate> feesStrucutures=feesTemplateController.viewTemplates();
+ 					ArrayList<FeesTemplate> feesStructures=feesTemplateController.viewTemplates();
  					TemplateItemController templateItemController=new TemplateItemController();
  					ArrayList<TemplateItem> templateItems=templateItemController.viewTemplateItem();
  					GroupController groupController=new GroupController();
  					ArrayList<Group> groups=groupController.viewGroups();
- 					int feesStructureCount=feesStrucutures.size();
- 					if(feesStructureCount>0){
- 					%>
+ 					int feesStructureCount=feesStructures.size();%>
  					<h3>Created Structure [<%out.print(feesStructureCount);%>]</h3>
      <div class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
              <div class="x_panel">
-               <%
-                 for(FeesTemplate feesStructure:feesStrucutures){          	 
-               %>
-                <div id="listviewshadow">
-                    <div class="x_panel">
-                       <div class="x_title">
-                       <h2><%out.print(feesStructure.getTemplateName());%></h2>
-                           <ul class="nav navbar-right panel_toolbox">
-                               <li class="dropdown">
-                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-pencil"></i></a>
-                               </li>
-                               <li>
-                                 <a href="${pageContext.request.contextPath}/FeesTemplateServlet?feesStructureid=<%out.print(feesStructure.getTemplateId());%>"><i class="fa fa-trash-o"></i></a>
-                               </li>
-                            </ul>
-                           <div class="clearfix"></div>
-                        </div>
-                         <div class="x_content">
-                             <div class="col-md-3 col-sm-3 col-xs-12">
-                                <div class="product-image">
-                                   <img src="images/fees-struc.png" alt="image not available"/>
-                                 </div>
-                              </div>
-                               <div class="col-md-5 col-sm-5 col-xs-12" style="border:0px solid #e5e5e5;">
-                                     <h2>Fees Structure :</h2>
-                                     <h6>Fees Item:</h6><%
-                                      String templateItemIds[]=feesStructure.getTemplateItemIds().split(",");%>
-                                      <table style="table-layout: fixed;width: 150%">
-                                   <% for(String templateItemId:templateItemIds){%>
-										 <tr>
-	                                     	<td style="white-space: -o-pre-wrap;word-wrap:break-word;">
-	                                     		<%out.print(templateItemController.templateItemDetailsFromId(Integer.parseInt(templateItemId)).get("template_item_name")); %>
-	                                     	</td>
-	                                        <td></td>
-	                                     	<td>
-	                                     	    <%out.print(currencyController.currencyDetailsFromId(Integer.parseInt(templateItemController.templateItemDetailsFromId(Integer.parseInt(templateItemId)).get("template_item_currency_id").toString())).get("symbol_left")+" "+
-	           									     templateItemController.templateItemDetailsFromId(Integer.parseInt(templateItemId)).get("template_item_price")+" "+
-	        									     currencyController.currencyDetailsFromId(Integer.parseInt(templateItemController.templateItemDetailsFromId(Integer.parseInt(templateItemId)).get("template_item_currency_id").toString())).get("symbol_right")); %>
-	                                     	</td>
-	                                     </tr>
-	                                 <%} %>
-	                                      </table>               
-                               </div>
-                          </div>
-                    </div>
-                 </div><br />         
-                 <%} 
-                 }else{%>
-                	 <h3>Fees Item[0]</h3>
-                 <%}%>
+            	 <div  class="table-responsive">
+    					<table id="table" class="table table-bordered table-striped">
+        					<thead >
+            					<tr>
+                					<th style="width: auto">S.NO</th>
+                					<th style="width: 600px">Fees Structure Title</th>
+                					<th style="width: auto">Fees Item</th>
+                					<th style="width: 70px">Action</th>
+            					</tr>
+        					</thead>
+        					<tbody>
+               				<%
+               					if(feesStructureCount>0){
+            	   				int SNO=1;
+                 				for(FeesTemplate feesstructure:feesStructures){          	 
+               				%>
+               					<tr>
+                					<td><%out.print(SNO);%></td>
+                					<td style="width: 120px"><%out.print(feesstructure.getTemplateName());%></td>
+                					<td><%out.print(SNO+3);%></td>
+                					<td style="width: 250px">
+                   							<a href="#"  data-href="#" data-id="" class="btn btn-default btn-sm" data-toggle="modal" data-target="#confirm-view">
+                           						<span class="glyphicon glyphicon-info-sign"></span> 
+                   							</a>
+                   							<a href="#"  data-href="#" data-id="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#confirm-edit">
+                           						<span class="glyphicon glyphicon-edit"></span> 
+                   							</a>
+                   							<a href="#"  data-href="#" data-id="" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirm-delete">
+                           						<span class="glyphicon glyphicon-trash"></span> 
+                   							</a>
+                					 </td>
+           						 </tr>
+                                   <%SNO++;} 
+                 			     }
+                                 else{%>
+                                  <tr>
+                					<td colspan="5" align="center">No Courses Available</td>
+              					</tr>
+          						<% }%>
+                              </tbody>
+                          </table>
                  <!-- end of for loop -->
                  </div>
               </div>

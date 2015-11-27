@@ -28,13 +28,13 @@
     <link href="css/select/select2.min.css" rel="stylesheet">
     <!-- switchery -->
     <link rel="stylesheet" href="css/switchery/switchery.min.css" />
-    <script src="js/jquery.min.js"></script>
     <script src="//oss.maxcdn.com/bootbox/4.2.0/bootbox.min.js"></script>
-    <script type="text/javascript">
-    $('#confirm-delete').on('show.bs.modal', function(e) {
-	    $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-	});
-	 </script>
+    <script src="//code.jquery.com/jquery-1.8.2.min.js"></script> 
+    <script type = "text/javascript"  src = "http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+     <script src="js/mycustom/autosearch.js" ></script>
+     <script src="js/mycustom/crud.js" ></script>
+         
+</head>
 <body class="nav-md">
   <div class="container body">
     <div class="main_container">
@@ -48,7 +48,10 @@
  				</div> 
  				  <div class="x_title">
  				  <div class="clearfix">
- 				  <input type="button" class="btn btn-primary" name="answer" value="ADD NEW COURSE" onclick="showDiv()"/>
+ 				  <button type="button" class="btn btn-primary col-md-2" name="addCourse" onclick="showDiv()"><span class="glyphicon glyphicon-plus-sign" ></span>  Add Course</button>
+ 				  <button type="button" class="btn btn-success col-md-2" name="importExcel"><span class="glyphicon glyphicon-upload" ></span>  Export Excel</button>
+ 				  <button type="button" class="btn btn-warning col-md-1" name="print"><span class="glyphicon glyphicon-print" ></span>  Print</button>
+ 				  <input type="text" class="form-control col-md-2" id="search" placeholder="Course Search " style="width: 200px;margin-left: 400px"/>
  				  </div>
  				</div>
  					<%
@@ -59,7 +62,7 @@
  			
  	<div  class="x_panel">
  	<div  class="table-responsive">
-    <table id="listviewshadow" class="table table-bordered table-striped">
+    <table id="table" class="table table-bordered table-striped">
         <thead >
             <tr>
                 <th>S.NO</th>
@@ -73,8 +76,7 @@
         <%
  			if(courseCount>0){
  				int SNO=1;
- 				Iterator<Courses> iterateCourse=courses.iterator();  
-            	for(Courses course:courses){	
+ 				for(Courses course:courses){	
  		%>
             <tr>
                 <td><%out.print(SNO);%></td>
@@ -82,9 +84,15 @@
                 <td><%out.print(course.getCourseName());%></td>
                 <td style="width:50px"><%out.print(course.getDurationInYears()+"/"+course.getDurationInSemester());%></td>
                 <td style="width: 250px">
-                   <button type="button" id="courseEdit"   data-id="<%out.print(course.getCourseId());%>" name="courseEdit" class="btn btn-default editButton" data-toggle="modal" data-target="#confirm-edit">Edit</button>
-                   <button type="button" id="courseView"   data-id="<%out.print(course.getCourseId());%>" name="courseView" class="btn btn-default updateButton" data-toggle="modal" data-target="#confirm-view">View</button>
-                   <button type="button" id="courseDelete" data-href="/something.jsp" data-id="<%out.print(course.getCourseId());%>" name="courseDelete" class="btn btn-default" data-toggle="modal" data-target="#confirm-delete">Delete</button>
+                   <a href="#"  data-href="#" data-id="<%out.print(course.getCourseId());%>" class="btn btn-default btn-sm" data-toggle="modal" data-target="#confirm-view">
+                           <span class="glyphicon glyphicon-info-sign"></span> 
+                   </a>
+                   <a href="#"  data-href="#" data-id="<%out.print(course.getCourseId());%>" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#confirm-edit">
+                           <span class="glyphicon glyphicon-edit"></span> 
+                   </a>
+                   <a href="#"  data-href="#" data-id="<%out.print(course.getCourseId());%>" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirm-delete">
+                           <span class="glyphicon glyphicon-trash"></span> 
+                   </a>
                 </td>
             </tr>
            <% SNO++;}
@@ -527,6 +535,10 @@
    </script>
    <!-- /datepicker -->
   <!-- /footer content -->
+  
+  
+  
+ 
 </body>
 </html>
  <%}%>

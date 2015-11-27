@@ -28,7 +28,7 @@ if(session.getAttribute("authenticated")!="true"){
     <link href="css/icheck/flat/green.css" rel="stylesheet" />
     <link href="css/floatexamples.css" rel="stylesheet" type="text/css" />
 
-    <script src="js/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
     <script src="js/nprogress.js"></script>
     <script>
         NProgress.start();

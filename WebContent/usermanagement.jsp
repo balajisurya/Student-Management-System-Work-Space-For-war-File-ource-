@@ -36,7 +36,7 @@
     <link href="css/icheck/flat/green.css" rel="stylesheet">
     <link href="css/datatables/tools/css/dataTables.tableTools.css" rel="stylesheet">
 
-    <script src="js/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
 
     <!--[if lt IE 9]>
         <script src="../assets/js/ie8-responsive-file-warning.js"></script>
@@ -152,8 +152,12 @@
  				  <input type="button" class="btn btn-primary" name="addGroup" value="CREATE USER" onclick="showUserManagementDiv();"/>
  				  </div>
  				</div>
+ 				<%
+ 				  UserManagement users=new UserManagement();
+ 				  UserManagementController userController=new UserManagementController();
+ 				  ArrayList<UserManagement> usersList=  userController.getUsersList();%>
  					
- 					<h3>Users Created[0]</h3>
+ 					<h3>Users Created[<%out.print(usersList.size());%>]</h3>
      					<div class="row">
           					<div class="col-md-12 col-sm-12 col-xs-12">
              					<div class="x_panel">
@@ -170,12 +174,13 @@
                                         </thead>
                                         
                                         <tbody>
-                                         
-                                         <tr class="even pointer">
-                                              <td class=" ">user1</td>
-                                              <td class=" ">user@gmail.com</td>
-                                              <td class=" ">admin</td>
-                                              <td class=" ">Active</td>
+                                         <%for(UserManagement user:usersList){
+                                         if(!user.getUserType().equals("student")){%>
+                                           <tr class="even pointer">
+                                              <td class=" "><%out.print(user.getUsername());%></td>
+                                              <td class=" "><%out.print(user.getUserEmail());%></td>
+                                              <td class=" "><%out.print(user.getUserType());%></td>
+                                              <td class=" "><%out.print(user.getUserStatusTitle());%></td>
                                               <td class=" ">
                                               <ul class="nav navbar-right panel_toolbox">
                                						<li class="dropdown">
@@ -186,9 +191,8 @@
                                						</li>
                             					</ul>
                                               </td>
-                                          </tr>  
-                                          
-                                            
+                                          </tr>	 
+                                        <% }} %>
                                         </tbody>
 									 </table>
                                 </div>

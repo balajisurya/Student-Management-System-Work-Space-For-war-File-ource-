@@ -41,7 +41,7 @@ else{%>
     <!-- switchery -->
     <link rel="stylesheet" href="css/switchery/switchery.min.css" />
 
-    <script src="js/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
 
 </head>
 <body class="nav-md">
@@ -95,10 +95,13 @@ else{%>
                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                      <div class="radio">
-                                         <label>
-                                             <input type="radio" class="flat" checked name="sex" value="male"> Male
-                                             <input type="radio" class="flat" name="sex" value="female"> Female
-                                          </label>
+                                         <select class="form-control" id="courses-list" name="courses-list">
+                                        <option value="" disabled selected>select joining course </option>
+                                             
+                                                 		<option >Male</option>
+                                                 		<option >Female</option>
+                                             	
+                                          </select>
                                       </div>
                                     </div>
                             </div>

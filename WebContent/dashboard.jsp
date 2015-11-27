@@ -28,9 +28,7 @@ else{%>
     <!-- Custom styling plus plugins -->
     <link href="css/custom.css" rel="stylesheet">
     <link href="css/icheck/flat/green.css" rel="stylesheet">
-    
-
-    <script src="js/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>  
    <title>Dashboard	</title>
    
  </head>
@@ -48,7 +46,7 @@ else{%>
                  <div class="col-md-6 col-sm-6 col-xs-12">
                       <div class="x_panel">
                            <div class="x_title">
-                               <h2>Fees Details</h2>
+                               <h2>Fees Paid/Pending</h2>
                                    <div class="clearfix"></div>
                             </div>
                              <div class="x_content2">
@@ -61,7 +59,7 @@ else{%>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                            <div class="x_panel">
                               <div class="x_title">
-                                    <h2>Students Category</h2>
+                                    <h2>Class-wise Students (Morning/Evening/Distance Learning)</h2>
                                			<div class="clearfix"></div>
                                </div>
                                 <div class="x_content2">
@@ -77,7 +75,7 @@ else{%>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Year Wise Students Admitted</h2>
+                                    <h2>Year-wise Students Admitted</h2>
                                    <div class="clearfix"></div>
                                 </div>
                                  <div class="x_content2">
@@ -91,7 +89,7 @@ else{%>
                   <div class="col-md-6 col-sm-6 col-xs-12">
                       <div class="x_panel">
                          <div class="x_title">
-                              <h2>Result Report</h2>
+                              <h2>Results (Passed/Failed/Discontinued)</h2>
                                   <div class="clearfix"></div>
                           </div>
                            <div class="x_content2">
@@ -105,7 +103,7 @@ else{%>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Year Wise Fees Collection</h2>
+                                    <h2>Year-wise Fees Collected (KShs)</h2>
                                  <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
@@ -120,7 +118,7 @@ else{%>
                   <div class="col-md-6 col-sm-6 col-xs-12">
                       <div class="x_panel">
                          <div class="x_title">
-                              <h2>Result Report</h2>
+                              <h2>Your Results</h2>
                                   <div class="clearfix"></div>
                           </div>
                            <div class="x_content2">
@@ -134,7 +132,7 @@ else{%>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Year Wise Fees Collection</h2>
+                                    <h2>Year-wise Fees Paid (KShs)</h2>
                                  <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">

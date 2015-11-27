@@ -30,7 +30,9 @@
     <link href="css/select/select2.min.css" rel="stylesheet">
     <!-- switchery -->
     <link rel="stylesheet" href="css/switchery/switchery.min.css" />
-    <script src="js/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
+    <script src="js/mycustom/autosearch.js" ></script>
+     <script src="js/mycustom/crud.js" ></script>
 </head>
 <body class="nav-md">
   <div class="container body">
@@ -45,7 +47,10 @@
  				</div> 
  				  <div class="x_title">
  				  <div class="clearfix">
- 				  <input type="button" class="btn btn-primary" name="answer" value="CREATE FEES ITEM" onclick="showDiv()"/>
+ 				  <button type="button" class="btn btn-primary col-md-2" name="addTemplateItem" onclick="showDiv()"><span class="glyphicon glyphicon-plus-sign" ></span>  Add Fees Item</button>
+ 				  <button type="button" class="btn btn-success col-md-2" name="importExcel"><span class="glyphicon glyphicon-upload" ></span>  Export Excel</button>
+ 				  <button type="button" class="btn btn-warning col-md-1" name="print"><span class="glyphicon glyphicon-print" ></span>  Print</button>
+ 				  <input type="text" class="form-control col-md-2" id="search" placeholder="Fees Item Search " style="width: 200px;margin-left: 400px"/>
  				  </div>
  				</div>
  					<%
@@ -53,49 +58,53 @@
  					ArrayList<TemplateItem> feesItems=feesItemController.viewTemplateItem();
  					CurrencyController currencyController=new CurrencyController();
  					ArrayList<Currency> currencyList=currencyController.viewCurrency();
- 					int feesItemCount=feesItems.size();
- 					if(feesItemCount>0){
- 					%>
+ 					int feesItemCount=feesItems.size();%>
  					<h3>Fees Item[<%out.print(feesItemCount);%>]</h3>
+ 					
      <div class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
              <div class="x_panel">
-               <%
-                 for(TemplateItem feesItem:feesItems){          	 
-               %>
-                <div id="listviewshadow">
-                    <div class="x_panel">
-                       <div class="x_title">
-                       <h2><%out.print(feesItem.getTemplateItemName());%></h2>
-                           <ul class="nav navbar-right panel_toolbox">
-                              
-                               <li class="dropdown">
-                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-pencil"></i></a>
-                               </li>
-                               <li>
-                                 <a href="${pageContext.request.contextPath}/TemplateItemServlet?templateitemid=<%out.print(feesItem.getTemplateItemId());%>"><i class="fa fa-trash-o"></i></a>
-                               </li>
-                            </ul>
-                           <div class="clearfix"></div>
-                        </div>
-                         <div class="x_content">
-                             <div class="col-md-3 col-sm-3 col-xs-12">
-                                <div class="product-image">
-                                   <img src="images/money.png" alt="image not available" />
-                                 </div>
-                              </div>
-                               <div class="col-md-5 col-sm-5 col-xs-12" style="border:0px solid #e5e5e5;">
-                                     <h2>Fee:</h2><h2><%
-                                     out.print(feesItem.getTemplateItemPrice()+" KSH ");
-                                     %></h2>
-                               </div>
-                          </div>
-                    </div>
-                 </div><br />         
-                 <%} 
-                 }else{%>
-                	 <h3>Fees Item[0]</h3>
-                 <%}%>
+            	 <div  class="table-responsive">
+    					<table id="table" class="table table-bordered table-striped">
+        					<thead >
+            					<tr>
+                					<th style="width: auto">S.NO</th>
+                					<th style="width: 600px">Fees Item</th>
+                					<th style="width: auto">Fee </th>
+                					<th style="width: 70px">Action</th>
+            					</tr>
+        					</thead>
+        					<tbody>
+               				<%
+               					if(feesItemCount>0){
+            	   				int SNO=1;
+                 				for(TemplateItem feesItem:feesItems){          	 
+               				%>
+               					<tr>
+                					<td><%out.print(SNO);%></td>
+                					<td style="width: 120px"><%out.print(feesItem.getTemplateItemName());%></td>
+                					<td><%out.print(feesItem.getTemplateItemPrice());%></td>
+                					<td style="width: 250px">
+                   							<a href="#"  data-href="#" data-id="" class="btn btn-default btn-sm" data-toggle="modal" data-target="#confirm-view">
+                           						<span class="glyphicon glyphicon-info-sign"></span> 
+                   							</a>
+                   							<a href="#"  data-href="#" data-id="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#confirm-edit">
+                           						<span class="glyphicon glyphicon-edit"></span> 
+                   							</a>
+                   							<a href="#"  data-href="#" data-id="" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirm-delete">
+                           						<span class="glyphicon glyphicon-trash"></span> 
+                   							</a>
+                					 </td>
+           						 </tr>
+                                   <%SNO++;} 
+                 			     }
+                                 else{%>
+                                  <tr>
+                					<td colspan="5" align="center">No Courses Available</td>
+              					</tr>
+          						<% }%>
+                              </tbody>
+                          </table>
                  <!-- end of for loop -->
                  </div>
               </div>
@@ -164,6 +173,7 @@
   </div><!-- end of right col -->
  </div><!-- end of main body -->
 </div><!-- end of container body -->
+</div>
 
 <div id="custom_notifications" class="custom-notifications dsp_none">
      <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">

@@ -1,6 +1,5 @@
 function showDiv(){
 		if(document.getElementById('FormDiv').style.display=="none"){
-			alert("hai");
 		document.getElementById('FormDiv').style.display="block";
 		document.getElementById('ListDiv').style.display="none";
 	}

@@ -33,8 +33,10 @@
     <link href="css/select/select2.min.css" rel="stylesheet">
     <!-- switchery -->
     <link rel="stylesheet" href="css/switchery/switchery.min.css" />
-    <script src="js/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
     <script src="//oss.maxcdn.com/bootbox/4.2.0/bootbox.min.js"></script>
+    <script src="js/mycustom/autosearch.js" ></script>
+    <script src="js/mycustom/crud.js" ></script>
     
 </head>
 <body class="nav-md">
@@ -50,7 +52,10 @@
  				</div> 
  				  <div class="x_title">
  				  <div class="clearfix">
- 				  <input type="button" class="btn btn-primary" name="addGroup" value="ADD NEW GROUP" onclick="showDiv()"/>
+ 				  <button type="button" class="btn btn-primary col-md-2" name="addGroup" onclick="showDiv()"><span class="glyphicon glyphicon-plus-sign" ></span>  Add Group</button>
+ 				  <button type="button" class="btn btn-success col-md-2" name="importExcel"><span class="glyphicon glyphicon-upload" ></span>  Export Excel</button>
+ 				  <button type="button" class="btn btn-warning col-md-1" name="print"><span class="glyphicon glyphicon-print" ></span>  Print</button>
+ 				  <input type="text" class="form-control col-md-2" id="search" placeholder="Group Search " style="width: 200px;margin-left: 400px"/>
  				  </div>
  				</div>
  					<%
@@ -63,7 +68,7 @@
  					%>
  					<h3>Groups Created[<%out.print(groupCount);%>]</h3>
      					<div class="table-responsive">
-    <table class="table table-bordered table-striped">
+    <table  id="table" class="table table-bordered table-striped">
         <thead>
             <tr>
                 <th>S.NO</th>
@@ -84,9 +89,15 @@
                 <td><%out.print(group.getGroupName());%></td>
                 <td style="width:150px"><%out.print(studentCount);%></td>
                 <td style="width: 250px">
-                   <button type="button" id="groupEdit"   data-id="1" name="groupEdit" class="btn btn-default editButton">Edit</button>
-                   <button type="button" id="groupView"   data-id="1" name="groupView" class="btn btn-default updateButton">View</button>
-                   <button type="button" id="groupDelete" data-id="1" name="groupeDelete" class="btn btn-default deleteButton">Delete</button>
+                   <a href="#"  data-href="#" data-id="" class="btn btn-default btn-sm" data-toggle="modal" data-target="#confirm-view">
+                           <span class="glyphicon glyphicon-info-sign"></span> 
+                   </a>
+                   <a href="#"  data-href="#" data-id="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#confirm-edit">
+                           <span class="glyphicon glyphicon-edit"></span> 
+                   </a>
+                   <a href="#"  data-href="#" data-id="" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirm-delete">
+                           <span class="glyphicon glyphicon-trash"></span> 
+                   </a>
                 </td>
             </tr>
            <% SNO++;
