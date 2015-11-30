@@ -1,0 +1,22 @@
+.myerror {
+    background:#ff0000 ; 
+    color: white;
+    height: 30px;  
+    elevation:10px; 
+    text-align: center;
+}
+
+.myinfo {
+    background: #66ff66;    
+    color: white;
+    height: 30px;
+    elevation:10px;
+    text-align: center;
+}
+.validating{
+	background: #ff6600;    
+    color: white;
+    height: 30px;
+    elevation:10px;
+    text-align: center;
+}
