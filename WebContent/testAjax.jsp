@@ -14,8 +14,9 @@ $('#sports').change(function(event) {
         	document.getElementById('player').style.display="block";
         var select = $('#player');
         select.find('option').remove();
+        
           $.each(response, function(index, value) {
-        	  
+        	  alert("working");
         		  $('<option>').val(index).text(value).appendTo(select);
         	  
          
@@ -30,8 +31,8 @@ $('#sports').change(function(event) {
         Select Favorite Sports:	
         <select id="sports">
                 <option>Select Sports</option>
-                <option value="Football">Football</option>
-                <option value="Cricket">Cricket</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
         </select>
         <br /> <br /> 
         Select Favorite Player:

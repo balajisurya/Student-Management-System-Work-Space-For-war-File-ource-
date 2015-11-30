@@ -1,3 +1,4 @@
+<%@page import="javax.swing.JOptionPane"%>
 <%@page import="com.google.gson.Gson"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
@@ -31,14 +32,15 @@
            user.setLastLogin(loginTime);
            user.setUserEmail(request.getParameter("user-name"));
            userManagement.updateLoginTime(user);
-           response.sendRedirect("dashboard.jsp");
+           out.print("Logged");
+          // response.sendRedirect("dashboard.jsp");
            
        }
        else{
-    	   out.print("Invalid User");
-    	          }
+               out.print("Invalid");
+         }
     }
     else{
-    	out.print("failed");
+    	out.print("Failed");
     }
     %>

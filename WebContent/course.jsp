@@ -31,9 +31,12 @@
     <script src="//oss.maxcdn.com/bootbox/4.2.0/bootbox.min.js"></script>
     <script src="//code.jquery.com/jquery-1.8.2.min.js"></script> 
     <script type = "text/javascript"  src = "http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="http://www.position-absolute.com/creation/print/jquery.min.js" type="text/javascript"></script>
+      <script src="http://www.position-absolute.com/creation/print/jquery.printPage.js" type="text/javascript"></script>
      <script src="js/mycustom/autosearch.js" ></script>
      <script src="js/mycustom/crud.js" ></script>
-         
+     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>n.js"></script>
+	 
 </head>
 <body class="nav-md">
   <div class="container body">
@@ -49,7 +52,7 @@
  				  <div class="x_title">
  				  <div class="clearfix">
  				  <button type="button" class="btn btn-primary col-md-2" name="addCourse" onclick="showDiv()"><span class="glyphicon glyphicon-plus-sign" ></span>  Add Course</button>
- 				  <button type="button" class="btn btn-success col-md-2" name="importExcel"><span class="glyphicon glyphicon-upload" ></span>  Export Excel</button>
+ 				  <button type="button" class="btn btn-success col-md-2" name="importExcel" onclick="PrintElem('#printList')"><span class="glyphicon glyphicon-upload" ></span>  Export Excel</button>
  				  <button type="button" class="btn btn-warning col-md-1" name="print"><span class="glyphicon glyphicon-print" ></span>  Print</button>
  				  <input type="text" class="form-control col-md-2" id="search" placeholder="Course Search " style="width: 200px;margin-left: 400px"/>
  				  </div>
@@ -61,7 +64,7 @@
  			<h3>Courses[<%out.print(courseCount);%>]</h3>
  			
  	<div  class="x_panel">
- 	<div  class="table-responsive">
+ 	<div  id="printList" class="table-responsive">
     <table id="table" class="table table-bordered table-striped">
         <thead >
             <tr>
@@ -118,7 +121,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-danger btn-ok" href="delete.jsp">Delete</a>
+                <a class="btn btn-danger btn-ok" id="driver" href="delete.jsp">Delete</a>
             </div>
         </div>
     </div>
