@@ -1,13 +1,10 @@
 package in.jdsoft.studentmanagement.servlets;
 
-import in.jdsoft.studentmanagement.controller.ReceiptController;
-import in.jdsoft.studentmanagement.controller.StudentRegistrationController;
-import in.jdsoft.studentmanagement.model.StudentRegistration;
-
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.servlet.ServletException;
@@ -15,6 +12,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
+
+import in.jdsoft.studentmanagement.controller.CourseController;
+import in.jdsoft.studentmanagement.controller.ReceiptController;
+import in.jdsoft.studentmanagement.controller.StudentRegistrationController;
+import in.jdsoft.studentmanagement.model.StudentRegistration;
 
 
 @WebServlet("/StudentRegistartionServlet")
@@ -24,6 +28,7 @@ public class StudentRegistartionServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 		
+		 System.out.println("working");
 		 SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		 String studentFirstName=request.getParameter("first-name");
 		 String studentLastName=request.getParameter("last-name");
@@ -100,10 +105,28 @@ public class StudentRegistartionServlet extends HttpServlet {
 		
 		String studentId[]={Integer.toString(newstudentId)};
 		new ReceiptController().addReceipt(studentId, fesStructureId);
-		response.sendRedirect("registration.jsp");
+		response.sendRedirect("dashboard.jsp");
 	}
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	 
     	
+    	int courseId =Integer.parseInt(request.getParameter("courseId"));
+    	 
+    	 java.util.List<Integer> list = new ArrayList<Integer>();
+    	 String json = null;
+    	 int semcount=0;
+        if(courseId!=0){
+        	semcount=(Integer)new CourseController().courseDetailsFromId(courseId).get("duration_in_semesters");
+           for(int i=1;i<=semcount;i++){
+        		list.add(i);
+            }
+        	json = new Gson().toJson(list);
+        	
+        }
+        response.setContentType("application/json");
+        response.getWriter().write(json);
+        System.out.print(courseId+" "+semcount);
+   	
 	}
 }

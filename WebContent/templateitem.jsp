@@ -11,8 +11,7 @@
     response.sendRedirect("user_login.jsp");
    }
 	else{%>
-  		<%@ include file="master_menu.jsp" %>
-   		<%@ include file="master_header.jsp" %>
+  		
    	<html lang="en">
 <head>
    <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -37,6 +36,8 @@
 <body class="nav-md">
   <div class="container body">
     <div class="main_container">
+    <%@ include file="master_menu.jsp" %>
+   		<%@ include file="master_header.jsp" %>
       <div class="right_col" role="main">
         <div id="ListDiv" style="display:block;"> <br>
           <br />
@@ -109,6 +110,8 @@
                  </div>
               </div>
           </div>
+          </div><!-- end of row -->
+          
   </div><!-- end of LisDiv div -->
                                 
 	<div id="FormDiv" style="display: none;"> 
@@ -173,7 +176,7 @@
   </div><!-- end of right col -->
  </div><!-- end of main body -->
 </div><!-- end of container body -->
-</div>
+
 
 <div id="custom_notifications" class="custom-notifications dsp_none">
      <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">

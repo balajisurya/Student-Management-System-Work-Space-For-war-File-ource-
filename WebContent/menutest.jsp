@@ -1,20 +1,25 @@
-<%@page import="in.jdsoft.studentmanagement.controller.CurrencyController"%>
-<%@page import="in.jdsoft.studentmanagement.model.Group"%>
-<%@page import="in.jdsoft.studentmanagement.controller.GroupController"%>
-<%@page import="in.jdsoft.studentmanagement.model.TemplateItem"%>
-<%@page import="in.jdsoft.studentmanagement.controller.TemplateItemController"%>
-<%@page import="in.jdsoft.studentmanagement.model.FeesTemplate"%>
+<%@page import="in.jdsoft.studentmanagement.model.Courses"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="in.jdsoft.studentmanagement.controller.CourseController"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="in.jdsoft.studentmanagement.controller.FeesTemplateController"%>
 <%@page errorPage="error.jsp" %>
 <%
-   if(session.getAttribute("authenticated")!="true"){
-    response.sendRedirect("user_login.jsp");
-   }
-	else{%>
+		if(session.getAttribute("authenticated")!="true"){
+		response.sendRedirect("user_login.jsp");
+		  }
+		else{%>
   		
-   	<html lang="en">
+  		
+<!DOCTYPE html>
+<html lang="en">
 <head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
    <link href="css/bootstrap.min.css" rel="stylesheet">
    <link href="fonts/css/font-awesome.min.css" rel="stylesheet">
    <link href="css/animate.min.css" rel="stylesheet">
@@ -30,130 +35,243 @@
     <link href="css/select/select2.min.css" rel="stylesheet">
     <!-- switchery -->
     <link rel="stylesheet" href="css/switchery/switchery.min.css" />
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
+    <script src="//oss.maxcdn.com/bootbox/4.2.0/bootbox.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.8.2.min.js"></script> 
+    <script type = "text/javascript"  src = "http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="http://www.position-absolute.com/creation/print/jquery.min.js" type="text/javascript"></script>
+      <script src="http://www.position-absolute.com/creation/print/jquery.printPage.js" type="text/javascript"></script>
+     <script src="js/mycustom/autosearch.js" ></script>
+     <script src="js/mycustom/crud.js" ></script>
+     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	 <script src="js/nprogress.js"></script>
 </head>
 <body class="nav-md">
   <div class="container body">
     <div class="main_container">
     <%@ include file="master_menu.jsp" %>
-   		<%@ include file="master_header.jsp" %>
-      <div class="right_col" role="main">
+    <%@ include file="master_header.jsp" %>
+      <div class="right_col" role="main" >
         <div id="ListDiv" style="display:block;"> <br>
           <br />
- 				<h3>Fees Structure</h3>
+ 				<h3>Courses</h3>
  				<div class="x_title">
  				  <div class="clearfix">
  				  </div>
  				</div> 
  				  <div class="x_title">
  				  <div class="clearfix">
- 				  <button type="button" class="btn btn-primary col-md-3" name="addFeesStructure" onclick="showDiv()"><span class="glyphicon glyphicon-plus-sign" ></span>  Create New Fees Structure</button>
- 				  <button type="button" class="btn btn-success col-md-2" name="importExcel"><span class="glyphicon glyphicon-upload" ></span>  Export Excel</button>
+ 				  <button type="button" class="btn btn-primary col-md-2" name="addCourse" onclick="showDiv()"><span class="glyphicon glyphicon-plus-sign" ></span>  Add Course</button>
+ 				  <button type="button" class="btn btn-success col-md-2" name="importExcel" onclick="PrintElem('#printList')"><span class="glyphicon glyphicon-upload" ></span>  Export Excel</button>
  				  <button type="button" class="btn btn-warning col-md-1" name="print"><span class="glyphicon glyphicon-print" ></span>  Print</button>
- 				  <input type="text" class="form-control col-md-2" id="search" placeholder="Search Fees Structure " style="width: 200px;margin-left: 300px"/>
+ 				  <input type="text" class="form-control col-md-2" id="search" placeholder="Course Search " style="width: 200px;margin-left: 400px"/>
  				  </div>
  				</div>
  					<%
- 					FeesTemplateController feesTemplateController=new FeesTemplateController();
- 					CurrencyController currencyController=new CurrencyController();
- 					ArrayList<FeesTemplate> feesStructures=feesTemplateController.viewTemplates();
- 					TemplateItemController templateItemController=new TemplateItemController();
- 					ArrayList<TemplateItem> templateItems=templateItemController.viewTemplateItem();
- 					GroupController groupController=new GroupController();
- 					ArrayList<Group> groups=groupController.viewGroups();
- 					int feesStructureCount=feesStructures.size();%>
- 					<h3>Created Structure [<%out.print(feesStructureCount);%>]</h3>
-     <div class="row">
-          <div class="col-md-12 col-sm-12 col-xs-12">
-             <div class="x_panel">
-            	 <div  class="table-responsive">
-    					<table id="table" class="table table-bordered table-striped">
-        					<thead >
-            					<tr>
-                					<th style="width: auto">S.NO</th>
-                					<th style="width: 600px">Fees Structure Title</th>
-                					<th style="width: auto">Fees Item</th>
-                					<th style="width: 70px">Action</th>
-            					</tr>
-        					</thead>
-        					<tbody>
-               				<%
-               					if(feesStructureCount>0){
-            	   				int SNO=1;
-                 				for(FeesTemplate feesstructure:feesStructures){          	 
-               				%>
-               					<tr>
-                					<td><%out.print(SNO);%></td>
-                					<td style="width: 120px"><%out.print(feesstructure.getTemplateName());%></td>
-                					<td><%out.print(SNO+3);%></td>
-                					<td style="width: 250px">
-                   							<a href="#"  data-href="#" data-id="" class="btn btn-default btn-sm" data-toggle="modal" data-target="#confirm-view">
-                           						<span class="glyphicon glyphicon-info-sign"></span> 
-                   							</a>
-                   							<a href="#"  data-href="#" data-id="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#confirm-edit">
-                           						<span class="glyphicon glyphicon-edit"></span> 
-                   							</a>
-                   							<a href="#"  data-href="#" data-id="" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirm-delete">
-                           						<span class="glyphicon glyphicon-trash"></span> 
-                   							</a>
-                					 </td>
-           						 </tr>
-                                   <%SNO++;} 
-                 			     }
-                                 else{%>
-                                  <tr>
-                					<td colspan="5" align="center">No Courses Available</td>
-              					</tr>
-          						<% }%>
-                              </tbody>
-                          </table>
-                 <!-- end of for loop -->
-                 </div>
-              </div>
+ 		    CourseController courseController=new CourseController();
+ 			ArrayList<Courses> courses=courseController.viewCourse();
+ 			int courseCount=courses.size();%>
+ 			<h3>Courses[<%out.print(courseCount);%>]</h3>
+ 			
+ 	<div  class="x_panel">
+ 	<div  id="printList" class="table-responsive">
+    <table id="table" class="table table-bordered table-striped">
+        <thead >
+            <tr>
+                <th>S.NO</th>
+                <th>Course Code</th>
+                <th>Course Name</th>
+                <th>Years/Semesters</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        <%
+ 			if(courseCount>0){
+ 				int SNO=1;
+ 				for(Courses course:courses){	
+ 		%>
+            <tr>
+                <td><%out.print(SNO);%></td>
+                <td style="width: 120px"><%out.print("COU"+course.getCourseId());%></td>
+                <td><%out.print(course.getCourseName());%></td>
+                <td style="width:50px"><%out.print(course.getDurationInYears()+"/"+course.getDurationInSemester());%></td>
+                <td style="width: 250px">
+                   <a href="#"  data-href="#" data-id="<%out.print(course.getCourseId());%>" class="btn btn-default btn-sm" data-toggle="modal" data-target="#confirm-view">
+                           <span class="glyphicon glyphicon-info-sign"></span> 
+                   </a>
+                   <a href="#"  data-href="#" data-id="<%out.print(course.getCourseId());%>" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#confirm-edit">
+                           <span class="glyphicon glyphicon-edit"></span> 
+                   </a>
+                   <a href="#"  data-href="#" data-id="<%out.print(course.getCourseId());%>" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirm-delete">
+                           <span class="glyphicon glyphicon-trash"></span> 
+                   </a>
+                </td>
+            </tr>
+           <% SNO++;}
+           }
+           else{%>
+        	   <tr>
+                <td colspan="5" align="center">No Courses Available</td>
+              </tr>
+          <% }%>
+        </tbody>
+    </table>
+</div>
+ 	
+ 	</div>				
+ 	<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+               <h4>Delete Conirmation?</h4> 
+            </div>
+            <div class="modal-body">
+                <h5>Are you sure, you want to delete this course?</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-danger btn-ok" id="driver" href="delete.jsp">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="confirm-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+               <h4>Edit Course</h4> 
+            </div>
+            <div class="modal-body">
+                 <form class="form-horizontal" role="form">
+                  		<div class="form-group">
+                    	  <label  class="col-sm-2 control-label" for="courseCode">Course Code</label>
+                    	    <div class="col-sm-10">
+                        		<input type="text" class="form-control" id="courseCode" placeholder="Course Code"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                    	  <label  class="col-sm-2 control-label" for="coursename">Course Name</label>
+                    	    <div class="col-sm-10">
+                        		<input type="text" class="form-control" id="coursename" placeholder="Course Name"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                    	  <label  class="col-sm-2 control-label" for="yearsem">Years/Semester</label>
+                    	    <div class="col-sm-10">
+                        		<input type="text" class="form-control" id="yearsem" placeholder="Semester" />
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                		<button type="submit" class="btn btn-default" data-dismiss="modal">Update</button>
+                      </div>
+                 </form>
+    
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="modal fade" id="confirm-view" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+               <h4>Course Details</h4> 
+            </div>
+            <div class="modal-body">
+                 <form class="form-horizontal" role="form">
+                  		<div class="form-group">
+                    	  <label  class="col-sm-2 control-label" for="courseCode">Course Code</label>
+                    	    <div class="col-sm-10">
+                        		<input type="text" class="form-control" id="courseCode" placeholder="Course Code" disabled="disabled"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                    	  <label  class="col-sm-2 control-label" for="coursename">Course Name</label>
+                    	    <div class="col-sm-10">
+                        		<input type="text" class="form-control" id="coursename" placeholder="Course Name" disabled="disabled"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                    	  <label  class="col-sm-2 control-label" for="yearsem">Years/Semester</label>
+                    	    <div class="col-sm-10">
+                        		<input type="text" class="form-control" id="yearsem" placeholder="Semester" disabled="disabled"/>
+                            </div>
+                        </div>
+                 </form>
+    
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
+        </div>
+    </div>
+</div>
+     
+<!-- The form which is used to populate the item data -->
+
   </div><!-- end of LisDiv div -->
-       </div>                         
+                                
 	<div id="FormDiv" style="display: none;"> 
        <div class="clearfix"></div><!-- end of clearfix div -->
            <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
                  <div class="x_panel" style="height:500px;">
                     <div class="x_title">
-                               <h2>Fees Template <small>(add new fees template)</small></h2>
+                               <h2>ADD COURSE <small>(add new course)</small></h2>
                                    <div class="clearfix"></div>
                      </div><!-- end of x_title div -->
                       <div class="x_content">
                                    <br />
-                         <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="${pageContext.request.contextPath}/FeesTemplateServlet" method="post">
+                         <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="${pageContext.request.contextPath}/CourseServlet" method="post">
                              <!-- start of form-group 1 -->
                              <div class="form-group">
-                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="structure-name">Fees Structure Name <span class="required">*</span>
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="course-name">Course Name <span class="required">*</span>
                                    </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                         <input name="structure-name" type="text" id="structure-name" required class="form-control col-md-7 col-xs-12">
+                                         <input name="course-name" type="text" id="course-name" required class="form-control col-md-7 col-xs-12">
                                      </div>
                               </div>
                               <!-- end of form-group 1 -->
                               
                               <!-- start of form-group 2 -->          
                               <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Select Fees Items</label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <select name="templateItemList"class="select2_multiple form-control" multiple="multiple">
-                                                <%int templateItemCount=templateItems.size();
-                             					if(templateItemCount>0){
-                             					 for(TemplateItem templateItem:templateItems){%>
-                                                    <option value="<%out.print(templateItem.getTemplateItemId());%>"><%out.print(templateItem.getTemplateItemName());%></option>
-                                                  <%}
-                             					 }
-                             					 else{%>
-                             					 <option></option>
-                             					 <%} %>  
-                                                </select>
-                                            </div>
-                                        </div>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="years">Duration in years <span class="required">*</span>
+                                    </label>
+                                      <div class="col-md-6 col-sm-6 col-xs-12">
+                                           <input type="text" id="years" name="years" required class="form-control col-md-7 col-xs-12">
+                                      </div>
+                              </div>
                               <!-- end of form-group 2 -->
+                              
+                               <!-- start of form-group 3 -->         
+                               <div class="form-group">
+                                    <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12" for="sems">Duration in Semesters<span class="required">*</span>
+                                    </label>
+                                     <div class="col-md-6 col-sm-6 col-xs-12">
+                                           <input id="sems" name="sems" required class="form-control col-md-7 col-xs-12"  type="text" name="middle-name">
+                                     </div>
+                               </div>
+                               <!-- end of form-group 3 -->
                                
+                               <!-- start of form-group 4 -->       
+                               <div class="form-group">
+                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="descrption">Course Description <span class="required">*</span>
+                                     </label>
+                                       <div class="col-md-6 col-sm-6 col-xs-12">
+                                             <textarea id="descrption" name="description"class="form-control"  required rows="3" placeholder=""></textarea>
+                                       </div>
+                               </div>
+                               <!-- end of form-group 4 -->
                        <div class="ln_solid"></div>
                            <div class="form-group"><!-- start of form group 5 -->
                            <!-- start of col-md-6 col-sm-6 col-xs-12 col-md-offset-3 -->
@@ -165,7 +283,7 @@
 					                         <div class="modal-header">
                     					           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
                                         	       </button>
-                                                   <h4 class="modal-title" id="myModalLabel">Fees Structure Created Successfully</h4>
+                                                   <h4 class="modal-title" id="myModalLabel">Course Added Successfully</h4>
                                               </div>
                                           </div>
                                         </div>
@@ -179,11 +297,11 @@
                  </div><!-- end of x-panel div -->
               </div><!-- end of col-md-12 col-sm-12 col-xs-12 div -->
            </div><!-- end of row div -->
-    </div><!-- end of FormDiv div -->
-  
+    </div><!-- end of FormDiv div --> 
+  </div><!-- end of right col -->
  </div><!-- end of main body -->
 </div><!-- end of container body -->
-</div>
+
 <div id="custom_notifications" class="custom-notifications dsp_none">
      <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">
      </ul>
@@ -211,8 +329,6 @@
   		<script type="text/javascript" src="js/formHide.js"></script>
  	<!-- /formHide jquery -->
   <!-- /custom js -->
-  <!-- select2 -->
-        <script src="js/select/select2.full.js"></script>
   <!-- flot js -->
     <!--[if lte IE 8]><script type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
     	<script type="text/javascript" src="js/flot/jquery.flot.js"></script>
@@ -425,27 +541,28 @@
             });
         });
   </script>
-   <!-- select2 -->
-        <script>
-            $(document).ready(function () {
-                $(".select2_single").select2({
-                    placeholder: "Select a group",
-                    allowClear: true
-                });
-                $(".select2_group").select2({});
-                $(".select2_multiple").select2({
-                    maximumSelectionLength: null,
-                    placeholder: "click to check available courses",
-                    allowClear: true
-                });
-            });
-        </script>
-   <!-- /select2 -->
+ 
   <script>
         NProgress.done();
    </script>
    <!-- /datepicker -->
   <!-- /footer content -->
+  
+  
+  
+	<script src="js/bootstrap.min.js"></script>
+
+	<script src="js/custom.js"></script>
+	
+    <!-- bootstrap progress js -->
+    <script src="js/progressbar/bootstrap-progressbar.min.js"></script>
+    <script src="js/nicescroll/jquery.nicescroll.min.js"></script>
+    
+  <script>
+        NProgress.done();
+    </script>
+ 
 </body>
 </html>
  <%}%>
+ 

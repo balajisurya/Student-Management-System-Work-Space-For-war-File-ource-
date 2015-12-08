@@ -4,10 +4,6 @@ if(session.getAttribute("authenticated")!="true"){
 	response.sendRedirect("user_login.jsp");
  }
 else{%>
-<%@ include file="master_menu.jsp" %>
-<%@ include file="master_header.jsp" %>
-<%@ page errorPage="error.jsp" %>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,25 +15,34 @@ else{%>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap core CSS -->
-
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
     <link href="fonts/css/font-awesome.min.css" rel="stylesheet">
     <link href="css/animate.min.css" rel="stylesheet">
 
     <!-- Custom styling plus plugins -->
     <link href="css/custom.css" rel="stylesheet">
     <link href="css/icheck/flat/green.css" rel="stylesheet">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>  
+    <!-- editor -->
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
+    <link href="css/editor/external/google-code-prettify/prettify.css" rel="stylesheet">
+    <link href="css/editor/index.css" rel="stylesheet">
+    <!-- select2 -->
+    <link href="css/select/select2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/switchery/switchery.min.css" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.8.2.min.js"></script> 
+    <script type = "text/javascript"  src = "http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>  
    <title>Dashboard	</title>
    
  </head>
- <body>
  
 <body class="nav-md">
 
   <div class="container body">
     <div class="main_container">
+    
+    <%@ include file="master_menu.jsp" %>
+    <%@ include file="master_header.jsp" %>
       <div class="right_col" role="main">
        <div class="">
         <div class="row">
@@ -436,6 +441,9 @@ else{%>
         });
     </script>
     <!-- /datepicker -->
+    <script>
+        NProgress.done();
+   </script>
  </body>
  </html>	
 <%}%>

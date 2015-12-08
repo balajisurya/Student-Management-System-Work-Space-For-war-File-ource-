@@ -10,8 +10,7 @@
 		response.sendRedirect("user_login.jsp");
 		  }
 		else{%>
-  		<%@ include file="master_menu.jsp" %>
-   		<%@ include file="master_header.jsp" %>
+  		
    		<!DOCTYPE html>
 <html lang="en">
 
@@ -38,28 +37,19 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
 
-    <!--[if lt IE 9]>
-        <script src="../assets/js/ie8-responsive-file-warning.js"></script>
-        <![endif]-->
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
+    
 
 </head>
 
 <body class="nav-md">
-
     <div class="container body">
-
-
-        <div class="main_container" >
+    <div class="main_container" >
+        <%@ include file="master_menu.jsp" %>
+   		<%@ include file="master_header.jsp" %>
 <div class="right_col" role="main">
   <div class="">
                     
-                        <div id="addUser" class="x_panel" style="height:500px;display: none;">
+                        <div id="addUser"  style="height:500px;display: none;">
                         <div class="page-title">
                         <div class="title_left">
                             <h3>

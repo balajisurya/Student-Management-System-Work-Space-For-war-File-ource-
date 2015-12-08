@@ -7,7 +7,6 @@ function showDiv(){
 		document.getElementById('FormDiv').style.display="none";
 		document.getElementById('ListDiv').style.display="block";
 	}
-	
 }
 
 function showUserManagementDiv(){

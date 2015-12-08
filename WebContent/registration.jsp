@@ -11,8 +11,6 @@ if(session.getAttribute("authenticated")!="true"){
 	response.sendRedirect("user_login.jsp");
  }
 else{%>
-<%@ include file="master_menu.jsp" %>
-   <%@ include file="master_header.jsp" %>
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -42,13 +40,33 @@ else{%>
     <link rel="stylesheet" href="css/switchery/switchery.min.css" />
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
-
+    <script>
+$(document).ready(function() {
+$('#courses-list').change(function(event) {
+        var courseid = $("select#courses-list").val();
+        $.get('StudentRegistartionServlet', {
+                courseId : courseid
+        }, function(response) {
+        var select = $('#semester-joined');
+        select.find('option').remove();
+        
+          $.each(response, function(index, value) {
+        	    $('<option>').val(value).text(value).appendTo(select);
+        	  
+      });
+        });
+        });
+});
+</script>
 </head>
 <body class="nav-md">
   <div class="container body">
     <div class="main_container">
        <!-- page content -->
+       <%@ include file="master_menu.jsp" %>
+   <%@ include file="master_header.jsp" %>
        <div class="right_col" role="main">
+       
           <br />
             <div class="x_panel" style="height:auto;">
                <div class="title_left">
@@ -92,11 +110,11 @@ else{%>
                             </div>
                             
                             <div class="form-group">
-                                   <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
+                                   <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender <span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                      <div class="radio">
-                                         <select class="form-control" id="courses-list" name="courses-list">
-                                        <option value="" disabled selected>select joining course </option>
+                                         <select class="form-control" id="sex" name="sex" required="required">
+                                        <option value="" disabled selected>Select Sex</option>
                                              
                                                  		<option >Male</option>
                                                  		<option >Female</option>
@@ -107,9 +125,9 @@ else{%>
                             </div>
                             
                              <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Course Name</label>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Course Name <span class="required">*</span></label>
                                      <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <select class="form-control" id="courses-list" name="courses-list">
+                                        <select class="form-control" id="courses-list" name="courses-list" required="required">
                                         <option value="" disabled selected>select joining course </option>
                                              <%
                                                	CourseController courseController=new CourseController();
@@ -125,21 +143,19 @@ else{%>
                              </div>
                                         
                             <div class="form-group">
-                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Semester</label>
+                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Semester <span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                	<select class="form-control" id="semester-joined" name="semester-joined">
-                                	<option value="1" disabled selected>select joining semester </option>
-                                   	  <option>1</option>
-                                   	  <option>2</option>
-                                   	  <option>3</option>
-                                 	</select>
+                                	<select class="form-control" id="semester-joined" name="semester-joined" required="required">
+                                	<option value="" disabled selected>Select Course First </option>
+                                   	</select>
                                  </div>
                              </div>
                                         
                               <div class="form-group">
-                                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Category</label>
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Category <span class="required">*</span></label>
                                      <div class="col-md-6 col-sm-6 col-xs-12">
-                                         <select class="form-control" name="category">
+                                         <select class="form-control" name="category" required="required">
+                                         <option value="" disabled selected>Select Category</option>
                                               <%
                                               		CourseCategoryController courseCategoryController=new CourseCategoryController();
                                              		ArrayList<CourseCategory> categories =courseCategoryController.getCategoryList();
@@ -162,7 +178,7 @@ else{%>
                                                 <div class="image view view-first" style="height: 100%; width:100%">
                                                     <img id="thumbnil" style="width:100%;  display: block;" src="images/user.png" alt="image" />
                                                     <div class="mask">
-                                                    	<input name="image_path"type="file" class="btn-primary" style="display:block;" accept="image/*" onchange="showMyImage(this)"/>
+                                                    	<input name="photo" type="file" class="btn-primary" style="display:block;" accept="image/*" onchange="showMyImage(this)"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -225,9 +241,9 @@ else{%>
                                             </div>
                                     </div>
                                     <div class="form-group">
-                               			<label class="control-label col-md-3 col-sm-3 col-xs-12">Country</label>
+                               			<label class="control-label col-md-3 col-sm-3 col-xs-12">Country <span class="required">*</span></label>
                                 			<div class="col-md-6 col-sm-6 col-xs-12">
-                                				<select class="form-control" id="countryd" name="country">
+                                				<select class="form-control" id="countryd" name="country" required="required">
                                 					<option value="1" disabled selected>Select Country</option>
                                    	  				<option value="2">Kenya</option>
                                    	  				<option value="3">Srilanka</option>
@@ -236,9 +252,9 @@ else{%>
                                  			</div>
                                     </div>
                                      <div class="form-group">
-                               			<label class="control-label col-md-3 col-sm-3 col-xs-12">City</label>
+                               			<label class="control-label col-md-3 col-sm-3 col-xs-12">City <span class="required">*</span></label>
                                 			<div class="col-md-6 col-sm-6 col-xs-12">
-                                				<select class="form-control" id="city" name="city">
+                                				<select class="form-control" id="city" name="city" required="required">
                                 					<option value="1" disabled selected>Select City</option>
                                    	  				<option value="2">Nairobi</option>
                                    	  				<option value="3">Colombo</option>
@@ -264,9 +280,10 @@ else{%>
                                      </div>
                                      
                                      <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Select Fees Structure</label>
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Select Fees Structure <span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <select class="form-control" name="feesTemplateId">
+                                                <select class="form-control" name="feesTemplateId" required="required">
+                                                <option value="" disabled selected>Select Fees Structure </option>
                                                  <%FeesTemplateController feesTemplateController=new FeesTemplateController();
                                                    ArrayList<FeesTemplate> feesTemplates= feesTemplateController.viewTemplates();
                                                    for(FeesTemplate feesTemplate:feesTemplates){%>

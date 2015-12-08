@@ -14,8 +14,7 @@
 		response.sendRedirect("user_login.jsp");
 		  }
 		else{%>
-  		<%@ include file="master_menu.jsp" %>
-   		<%@ include file="master_header.jsp" %>
+  		
    		<!DOCTYPE html>
 <html lang="en">
 
@@ -68,6 +67,8 @@
 
 
         <div class="main_container">
+        <%@ include file="master_menu.jsp" %>
+   		<%@ include file="master_header.jsp" %>
 <div class="right_col" role="main">
 
        <div class="">

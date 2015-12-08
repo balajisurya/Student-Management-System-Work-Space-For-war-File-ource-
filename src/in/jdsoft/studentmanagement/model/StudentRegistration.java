@@ -126,14 +126,6 @@ public class StudentRegistration {
     public String getPassportNo() {
 		return passportNo;
 	}
-    
-    
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
-	}
-	public String getImagePath() {
-		return imagePath;
-	}
 	
 	public void setJoinedDate(Date joinedDate) {
 		this.joinedDate = joinedDate;
@@ -197,6 +189,12 @@ public class StudentRegistration {
 	}
 	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
+	}
+	public String getImagePath() {
+		return imagePath;
+	}
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 	
 }

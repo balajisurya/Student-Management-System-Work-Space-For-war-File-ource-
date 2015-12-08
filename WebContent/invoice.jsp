@@ -18,12 +18,8 @@
 		response.sendRedirect("user_login.jsp");
 		  }
 		else{
- %>
- <%@ include file="master_menu.jsp" %>
- <%@ include file="master_header.jsp" %> 
- <%
- int groupId=Integer.parseInt(request.getParameter("group"));
- int categoryId=Integer.parseInt(request.getParameter("category"));
+			int groupId=Integer.parseInt(request.getParameter("group"));
+			 int categoryId=Integer.parseInt(request.getParameter("category"));
  %>
  <!DOCTYPE html>
 <html lang="en">
@@ -67,7 +63,8 @@
 <body class="nav-md">
 
     <div class="container body">
-
+<%@ include file="master_menu.jsp" %>
+ <%@ include file="master_header.jsp" %>
 
         <div class="main_container">
 <div class="right_col" role="main">

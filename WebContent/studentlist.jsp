@@ -20,8 +20,7 @@ if(session.getAttribute("authenticated")!="true"){
     response.sendRedirect("user_login.jsp");
  }
 else{%>
- <%@ include file="master_menu.jsp" %>
- <%@ include file="master_header.jsp" %> 
+  
  <%
  int courseSemId=Integer.parseInt(request.getParameter("courseSemId"));
  int categoryId=Integer.parseInt(request.getParameter("categoryId"));
@@ -69,6 +68,8 @@ else{%>
 
 <div class="container body">
 <div class="main_container">
+<%@ include file="master_menu.jsp" %>
+ <%@ include file="master_header.jsp" %>
 <div class="right_col" role="main">
 
        <div class="">
