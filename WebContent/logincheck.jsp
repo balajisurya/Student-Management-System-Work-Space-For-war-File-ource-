@@ -24,7 +24,11 @@
     	   session.setAttribute("username",request.getParameter("user-name"));
            session.setAttribute("name",userManagement.getUserDetails(request.getParameter("user-name")).get("USER_NAME").toString());
            session.setAttribute("type",userManagement.getUserDetails(request.getParameter("user-name")).get("USER_TYPE").toString());
-           session.setAttribute("lastlogin",userManagement.getUserDetails(request.getParameter("user-name")).get("LAST_LOGIN").toString());
+           try{
+        	   session.setAttribute("lastlogin",userManagement.getUserDetails(request.getParameter("user-name")).get("LAST_LOGIN").toString());
+           }catch(Exception e){
+        	   session.setAttribute("lastlogin","Never");
+           }
            session.setAttribute("authenticated","true");
            Calendar calendar = Calendar.getInstance();
    		   java.util.Date createdDate = calendar.getTime();

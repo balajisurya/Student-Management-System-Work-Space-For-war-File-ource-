@@ -108,11 +108,10 @@ public class StudentRegistartionServlet extends HttpServlet {
 		response.sendRedirect("dashboard.jsp");
 	}
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	 
+   
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
-    	int courseId =Integer.parseInt(request.getParameter("courseId"));
-    	 
+		int courseId =Integer.parseInt(request.getParameter("courseId"));
     	 java.util.List<Integer> list = new ArrayList<Integer>();
     	 String json = null;
     	 int semcount=0;
@@ -126,7 +125,5 @@ public class StudentRegistartionServlet extends HttpServlet {
         }
         response.setContentType("application/json");
         response.getWriter().write(json);
-        System.out.print(courseId+" "+semcount);
-   	
-	}
+    }
 }

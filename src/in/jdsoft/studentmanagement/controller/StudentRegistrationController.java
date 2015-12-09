@@ -65,7 +65,7 @@ static ServletContext sc;
     	registrationStmt.setString(20,student.getImagePath());
     	registrationStmt.setDate(21,student.getJoinedDate());
     	registrationStmt.setInt(22,1);
-    	registrationStmt.setInt(23,0);
+    	registrationStmt.setInt(23,1);
     	registrationStmt.setTimestamp(24,student.getCreatedDate());
     	registrationStmt.execute();
     	registrationRs=registrationStmt.getGeneratedKeys();
@@ -98,7 +98,7 @@ static ServletContext sc;
     		//creating logincredential
     		UserManagement studentUser=new UserManagement();
     		UserManagementController adduserController=new UserManagementController();
-    		studentUser.setUsername(student.getFirstname().concat(student.getLastname()));
+    		studentUser.setUsername(student.getFirstname().concat(" "+student.getLastname()));
     		studentUser.setUserEmail(student.getEmail());
     		studentUser.setPassword(student.getDateOfBirth().toString());
     		studentUser.setUserType("student");
