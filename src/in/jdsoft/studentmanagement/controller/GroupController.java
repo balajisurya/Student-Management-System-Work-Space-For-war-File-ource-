@@ -14,6 +14,14 @@ import com.mysql.jdbc.Statement;
 import in.jdsoft.studentmanagement.database.DBConnection;
 import in.jdsoft.studentmanagement.model.Group;
 
+/**
+* GroupController is a class used to perform the various Operation on group like Creating the new Group using addGroup() method.  
+* 
+*
+* @author  Jd Soft
+* @version 1.0
+* @since   2015-12-09 
+*/
 public class GroupController {
 
 static ServletContext sc;
@@ -28,6 +36,10 @@ static ServletContext sc;
 		 GroupController.sc=sc;
 	 }
 
+	/**
+     * addGroup() method is used to add the new group, it accepts the Group object as its parameter.
+     * @throws Exception with message "Exception in Add group of group controller" if there is any exception.
+    */
 	
     public int addGroup(Group g){
     	int groupId=0;

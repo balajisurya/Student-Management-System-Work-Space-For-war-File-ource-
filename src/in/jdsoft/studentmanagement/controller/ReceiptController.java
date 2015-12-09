@@ -111,7 +111,6 @@ public Receipt getReceiptDetails(int receiptId){
 
    public ArrayList<Receipt> getAllReceiptId(int studentId){
 	   ArrayList<Receipt> receiptIds=new ArrayList<>();
-	   Receipt receipId=new Receipt();
 	   try{
 			DBConnection receiptSc=(DBConnection) sc.getAttribute("dbConn");
 			receiptConn=receiptSc.getDBConnection();
@@ -119,7 +118,8 @@ public Receipt getReceiptDetails(int receiptId){
 			receiptStmt.setInt(1,studentId);
 			receiptRs=receiptStmt.executeQuery();
 			while(receiptRs.next()){
-				receipId.setReceiptId(receiptRs.getInt("student_id"));
+				Receipt receipId=new Receipt();
+				receipId.setReceiptId(receiptRs.getInt("receipt_id"));
 				receiptIds.add(receipId);
 			}
         }

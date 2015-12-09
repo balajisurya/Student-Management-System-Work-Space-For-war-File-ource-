@@ -16,9 +16,9 @@ public class UserManagementController {
 
 static ServletContext sc;
 	
-	Connection userManagementConn=null;
-    PreparedStatement userManagementStmt=null;
-    ResultSet userManagementRs=null;
+	Connection userManagementConn=null,userManagementConn1=null;
+    PreparedStatement userManagementStmt=null,userManagementStmt1=null;
+    ResultSet userManagementRs=null,userManagementRs1=null;
     ArrayList<UserManagement> returnUsersList=new ArrayList<>();
     ArrayList<UserManagement> returnUserStatus=new ArrayList<>();
     ArrayList<UserManagement> returnUserType=new ArrayList<>();
@@ -99,17 +99,29 @@ static ServletContext sc;
     	String status=null;
     	try{
     		DBConnection userManagementSc=(DBConnection) sc.getAttribute("dbConn");
-        	userManagementConn=userManagementSc.getDBConnection();
-        	userManagementStmt=userManagementConn.prepareStatement("SELECT user_status_title FROM tbl_user_status WHERE user_status_id=?");
-        	userManagementStmt.setInt(1,statusId);
-        	userManagementRs=userManagementStmt.executeQuery();
-        	if(userManagementRs.next()){
-        		status=userManagementRs.getString("user_status_title");
+        	userManagementConn1=userManagementSc.getDBConnection();
+        	userManagementStmt1=userManagementConn1.prepareStatement("SELECT user_status_title FROM tbl_user_status WHERE user_status_id=?");
+        	userManagementStmt1.setInt(1,statusId);
+        	userManagementRs1=userManagementStmt1.executeQuery();
+        	if(userManagementRs1.next()){
+        		status=userManagementRs1.getString("user_status_title");
         	}
     	}catch(Exception e){
     		System.out.println("Exception in Getting status from statusId "+e);
     	}finally{
-    		close();
+    		try{
+    			if(userManagementConn1!=null){
+    				userManagementConn1.close();
+    			}
+    			if(userManagementStmt1!=null){
+    			  userManagementStmt1.close();	
+    			}
+    			if(userManagementRs1!=null){
+    				userManagementRs1.close();
+    		   }
+    		}catch(Exception e){
+    			System.out.println("Exception in closing getStatusTitle() connection student registration controller"+e);
+    		}
     	}
     	return status;
     }
@@ -191,6 +203,7 @@ public ArrayList<UserManagement> getUserType(){
 			if(userManagementRs!=null){
 				userManagementRs.close();
 		   }
+			
 		}catch(Exception e){
 			System.out.println("Exception in closing student Registration connection of student registration controller"+e);
 		}

@@ -12,6 +12,15 @@ import javax.servlet.ServletContext;
 import in.jdsoft.studentmanagement.database.DBConnection;
 import in.jdsoft.studentmanagement.model.Courses;
 
+
+/**
+* CourseController is a class used to perform the various Operation on Course like Adding the new course using addCourse() method.  
+* 
+*
+* @author  Jd Soft
+* @version 1.0
+* @since   2015-12-09 
+*/
 public class CourseController {
 	
 	static ServletContext sc;
@@ -26,7 +35,10 @@ public class CourseController {
 		 CourseController.sc=sc;
 	 }
 	
-	
+	/**
+     * addCourse() method is used to add the new course, it accepts the Course object as its parameter.
+     * @throws Exception with message "Exception in Add Course of course controller" if there is any exception.
+     */
 	 
     public void addCourse(Courses c){
     	try{

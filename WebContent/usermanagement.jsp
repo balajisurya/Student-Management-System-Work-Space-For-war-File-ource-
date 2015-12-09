@@ -145,9 +145,9 @@
  				<%
  				  UserManagement users=new UserManagement();
  				  UserManagementController userController=new UserManagementController();
- 				  ArrayList<UserManagement> usersList=  userController.getUsersList();%>
+ 				   ArrayList<UserManagement> usersList=  userController.getUsersList();%>
  					
- 					<h3>Users Created[<%out.print(usersList.size());%>]</h3>
+ 					<h3>Users Created[<%out.print(usersList.size());%>]<small> (Count Includes Students)</small></h3>
      					<div class="row">
           					<div class="col-md-12 col-sm-12 col-xs-12">
              					<div class="x_panel">
