@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee">
   <display-name>StudentsManagementSystem</display-name>
   <welcome-file-list>
     <welcome-file>user_login.jsp</welcome-file>
@@ -39,12 +41,12 @@
     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet>
-    <servlet-name>TestAjax</servlet-name>
-    <servlet-class>in.jdsoft.studentmanagement.servlets.TestAjax</servlet-class>
+    <servlet-name>ReceiptServlet</servlet-name>
+    <servlet-class>in.jdsoft.studentmanagement.servlets.ReceiptServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>TestAjax</servlet-name>
-    <url-pattern>/TestAjax/*</url-pattern>
+    <servlet-name>ReceiptServlet</servlet-name>
+    <url-pattern>/ReceiptServlet/*</url-pattern>
   </servlet-mapping>
   <error-page>
     <exception-type>java.lang.Exception</exception-type>

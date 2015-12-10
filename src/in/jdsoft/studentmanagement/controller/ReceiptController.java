@@ -93,6 +93,7 @@ public Receipt getReceiptDetails(int receiptId){
     			receiptStmt.setInt(1,receiptId);
     			receiptRs=receiptStmt.executeQuery();
     			receiptRs.next();
+    			receipt.setReceiptId(receiptRs.getInt("receipt_id"));
     			receipt.setStudentId(receiptRs.getInt("student_id"));
     			receipt.setSemester(receiptRs.getInt("semester"));
     			receipt.setTotalFees(receiptRs.getDouble("total_fees"));

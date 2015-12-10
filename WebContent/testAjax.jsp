@@ -16,8 +16,9 @@ $('#sports').change(function(event) {
         select.find('option').remove();
         
           $.each(response, function(index, value) {
-        	  alert("working");
-        		  $('<option>').val(index).text(value).appendTo(select);
+        	  var jsonobject=value;
+        	    $('<option>').val(jsonobject.studentId).text(jsonobject.firstname).appendTo(select);
+        	    
         	  
          
       });
@@ -31,8 +32,8 @@ $('#sports').change(function(event) {
         Select Favorite Sports:	
         <select id="sports">
                 <option>Select Sports</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
+                <option value="Football">Football</option>
+                <option value="Cricket">Cricket</option>
         </select>
         <br /> <br /> 
         Select Favorite Player:
