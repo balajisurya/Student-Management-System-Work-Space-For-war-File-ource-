@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee">
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.4">
   <display-name>StudentsManagementSystem</display-name>
   <welcome-file-list>
     <welcome-file>user_login.jsp</welcome-file>
@@ -11,6 +9,10 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <context-param>
+    <param-name>SyncingTime</param-name>
+    <param-value>10</param-value>
+  </context-param>
   <servlet>
     <servlet-name>DBInit</servlet-name>
     <servlet-class>in.jdsoft.studentmanagement.database.DBInit</servlet-class>
@@ -48,6 +50,18 @@
     <servlet-name>ReceiptServlet</servlet-name>
     <url-pattern>/ReceiptServlet/*</url-pattern>
   </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>FeesFeederServlet</servlet-name>
+    <servlet-class>in.jdsoft.reportingtool.controller.FeesFeederServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FeesFeederServlet</servlet-name>
+    <url-pattern>/FeesFeederServlet/*</url-pattern>
+  </servlet-mapping>
+  
+  
   <error-page>
     <exception-type>java.lang.Exception</exception-type>
     <location>/error.jsp</location>

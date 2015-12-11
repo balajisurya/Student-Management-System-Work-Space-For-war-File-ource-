@@ -23,7 +23,6 @@ static ServletContext sc;
 		CourseCategoryController .sc=sc;
 	 }
    
-    
     public ArrayList<CourseCategory> getCategoryList(){
     	try{
     		DBConnection categorySc=(DBConnection) sc.getAttribute("dbConn");

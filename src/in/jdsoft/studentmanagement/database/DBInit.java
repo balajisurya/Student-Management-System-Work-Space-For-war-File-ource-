@@ -5,6 +5,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 
+import in.jdsoft.reportingtool.feeders.FeesFeeder;
 import in.jdsoft.studentmanagement.controller.CourseCategoryController;
 import in.jdsoft.studentmanagement.controller.CourseController;
 import in.jdsoft.studentmanagement.controller.CourseSemesterController;
@@ -104,6 +105,9 @@ public class DBInit extends HttpServlet {
         
         UserManagementController userManagement=new UserManagementController();
         userManagement.getDbAccess(sc);
+        
+        FeesFeeder feesFeeder=new FeesFeeder();
+        feesFeeder.getDbAccess(sc);
         
     }
 

@@ -1,4 +1,5 @@
 $(function () {
+	
     Morris.Bar({
         element: 'graph_bar',
         data: [
@@ -41,7 +42,7 @@ $(function () {
     Morris.Donut({
         element: 'graph_donut',
         data: [
-            {label: 'Paid', value: 75},
+            {label: 'Paid', value: 72},
             {label: 'Pending', value:25}
         ],
         colors: ['#26B99A', '#FF3300', '#ACADAC', '#3498DB'],
