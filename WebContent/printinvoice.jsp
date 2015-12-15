@@ -41,8 +41,8 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
     <script src="http://www.position-absolute.com/creation/print/jquery.min.js" type="text/javascript"></script>
-      <script src="http://www.position-absolute.com/creation/print/jquery.printPage.js" type="text/javascript"></script>
-   <script>
+     <script src="http://www.position-absolute.com/creation/print/jquery.printPage.js" type="text/javascript"></script>
+     <script>
          $(document).ready(function() {
              $(".btnPrint").printPage();
          });
@@ -134,7 +134,7 @@
                                           <td class=" "><%out.print(studentDetail.getCurrentSemester());%></td>
                                           <td class=" "><%out.print(studentDetail.getCategoryId());%></td>
                                           <td class="a-right a-right "><%out.print(receiptdetails.getTotalFees()); %></td>
-                                          <td class=" last"><a class="" href="studentInvoice.jsp?receiptId=<%out.print(studentReceipt.getReceiptId());%>">Print</a>
+                                          <td class=" last"><a class=".btnPrint" href="studentInvoice.jsp?receiptId=<%out.print(studentReceipt.getReceiptId());%>">Print</a>
                                           </td>
                                 	  <%}
                                 	  %>

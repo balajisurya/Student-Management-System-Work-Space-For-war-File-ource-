@@ -70,12 +70,13 @@
                                <div class="col-md-3 col-sm-3 col-xs-3">
                                      <input type="text" id="studentId" name="studentId" required="required" class="form-control col-md-7 col-xs-12" placeholder="Enter Student Id">
                                </div>
-                              <input type="button"  class="btn btn-primary" id="getFeesDetails" name="getFeesDetails" value="Fees Details"> 
+                              <input type="button"  class="btn btn-primary" id="getFeesDetails" name="getFeesDetails" value="Fees Details">
+                               
                      </div>
  				  </div>
  				</div>
  </div><!-- end of LisDiv div -->
-                                
+                                >
 	<div id="FormDiv" style="display: none;"> 
        <div class="clearfix"></div><!-- end of clearfix div -->
            <div class="row">
@@ -90,15 +91,58 @@
                 <th>Semester</th>
                 <th>Total Fees</th>
                 <th>Pending Fees</th>
-                <th>Amount</th>
+                <!--<th>Amount</th> -->
             </tr>
         </thead>
         <tbody id="bodyContent">
             <!-- Content Based on User input from ajax method -->
-            <tr dis></tr>    
+            <tr></tr>    
         </tbody>
     </table>
 </div>
+<div class="form-group col-md-12 col-sm-12 col-xs-12">
+                         <label style="text-align: right;" class="control-label col-md-9 col-sm-6 col-xs-12" for="pendingfees">Total Pending Fees
+                          </label>
+                      <div class="col-md-3 col-sm-3 col-xs-3">
+                          <label  id="pendingfees" style="text-align: right;" class="control-label col-md-4 col-sm-12 col-xs-6">
+                          </label>
+                          
+                      </div>
+                </div>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                      <label id="payingfees" style="text-align: right;" class="control-label col-md-7 col-sm-6">Enter Amount to be paid
+                      </label>
+                      <div class="col-md-2 col-sm-6">
+                          <input type="text" id="payingfees" placeholder="Enter the amount" name="payingfees" required="required" class="form-control col-md-3 col-xs-12 col-sm-6">
+                      </div>
+                      <button type="button" data-toggle="modal" data-target="#confirm-delete" class="btn btn-success col-md-1" name="addCourse" ><span class="glyphicon glyphicon-ok" ></span></button>
+                 </div>
+                 
+                 
+                 <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>Do you want to add this fees for this student?</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-danger btn-ok">Ok</a>
+            </div>
+        </div>
+    </div>
+</div>
+                 
+                 
+                 
+                 
+                 
+                 
+                 
                  </div><!-- end of x-panel div -->
               </div><!-- end of col-md-12 col-sm-12 col-xs-12 div -->
            </div><!-- end of row div -->
