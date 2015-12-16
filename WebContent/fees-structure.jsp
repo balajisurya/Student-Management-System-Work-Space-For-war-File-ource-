@@ -30,6 +30,7 @@
     <link href="css/select/select2.min.css" rel="stylesheet">
     <!-- switchery -->
     <link rel="stylesheet" href="css/switchery/switchery.min.css" />
+    <title>Fees Structure</title>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
 </head>
 <body class="nav-md">
@@ -139,7 +140,7 @@
                               <div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Select Fees Items</label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <select name="templateItemList"class="select2_multiple form-control" multiple="multiple">
+                                                <select name="templateItemList" class="form-control select2_multiple"  multiple="multiple" style="width:495px">
                                                 <%int templateItemCount=templateItems.size();
                              					if(templateItemCount>0){
                              					 for(TemplateItem templateItem:templateItems){%>

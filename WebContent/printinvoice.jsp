@@ -134,7 +134,7 @@
                                           <td class=" "><%out.print(studentDetail.getCurrentSemester());%></td>
                                           <td class=" "><%out.print(studentDetail.getCategoryId());%></td>
                                           <td class="a-right a-right "><%out.print(receiptdetails.getTotalFees()); %></td>
-                                          <td class=" last"><a class=".btnPrint" href="studentInvoice.jsp?receiptId=<%out.print(studentReceipt.getReceiptId());%>">Print</a>
+                                          <td class=" last"><a class="btnPrint" href="studentInvoice.jsp?receiptId=<%out.print(studentReceipt.getReceiptId());%>">Print</a>
                                           </td>
                                 	  <%}
                                 	  %>

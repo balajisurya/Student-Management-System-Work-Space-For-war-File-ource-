@@ -67,7 +67,7 @@
                     <div class="page-title">
                         <div class="title_left">
                             <h3>
-                           Generate Invoice
+                           Generate Invoice - Apply Fee Structure
                            </h3>
                         </div>
 

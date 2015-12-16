@@ -27,6 +27,7 @@
     <link href="css/editor/index.css" rel="stylesheet">
     <!-- select2 -->
     <link href="css/select/select2.min.css" rel="stylesheet">
+    <title>Fees Items</title>
     <!-- switchery -->
     <link rel="stylesheet" href="css/switchery/switchery.min.css" />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 

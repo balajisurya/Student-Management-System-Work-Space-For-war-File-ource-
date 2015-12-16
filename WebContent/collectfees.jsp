@@ -23,6 +23,7 @@
     <link href="css/select/select2.min.css" rel="stylesheet">
     <!-- switchery -->
     <link rel="stylesheet" href="css/switchery/switchery.min.css" />
+    <title>Collect Fees</title>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="//oss.maxcdn.com/bootbox/4.2.0/bootbox.min.js"></script>
     <script src="//code.jquery.com/jquery-1.8.2.min.js"></script> 
@@ -76,7 +77,7 @@
  				  </div>
  				</div>
  </div><!-- end of LisDiv div -->
-                                >
+                                
 	<div id="FormDiv" style="display: none;"> 
        <div class="clearfix"></div><!-- end of clearfix div -->
            <div class="row">

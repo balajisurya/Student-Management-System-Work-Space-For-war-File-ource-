@@ -1,5 +1,4 @@
 function loadDonotGraph(){
-	alert("hai");
 	$(function () {
 		
 		var paidfees=65;
