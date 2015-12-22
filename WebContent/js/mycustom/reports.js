@@ -37,20 +37,7 @@ $(function () {
         console.log(i, row);
     });
 
-
-
-    Morris.Donut({
-        element: 'graph_donut',
-        data: [
-            {label: 'Paid', value: 72},
-            {label: 'Pending', value:25}
-        ],
-        colors: ['#26B99A', '#FF3300', '#ACADAC', '#3498DB'],
-        formatter: function (y) {
-            return y + "%"
-        }
-    });
-    
+  
     new Morris.Line({
         element: 'graph_line',
         xkey: 'year',

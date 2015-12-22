@@ -33,6 +33,15 @@
           <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
+        <script>
+        
+        
+        
+          $(document).ready(function(){
+        	  	loadDonotGraph();
+          }
+         );
+        </script>
 
 </head>
 
@@ -97,7 +106,7 @@
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content2">
-                                    <div id="graph_donut" ></div>
+                                    <div id="graph_donut"></div>
                                 </div>
                             </div>
                         </div>
