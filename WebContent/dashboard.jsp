@@ -111,7 +111,7 @@ else{%>
               <!-- /bar charts group -->
               <!-- bar chart -->
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <div class="x_panel">
+                           <div class="x_panel">
                                 <div class="x_title">
                                     <h2>Year-wise Fees Collected (KShs)</h2>
                                  <div class="clearfix"></div>
