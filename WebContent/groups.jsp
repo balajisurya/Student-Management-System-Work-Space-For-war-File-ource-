@@ -154,9 +154,11 @@
                                                 <%
                                                 int courseSemestersCount=courseSemesterList.size();
                              					if(courseSemestersCount>0){
-                             					 for(CourseSemester courseSem:courseSemesterList){%>
+                             					 for(CourseSemester courseSem:courseSemesterList){
+                             					 if(courseSem.getLockStatus()!=1){%>
                                                     <option value="<%out.print(courseSem.getCourseSemesterId());%>"><%out.print(courseController.courseDetailsFromId(courseSem.getCourseId()).get("course_name")+"  "+"Semester"+" "+courseSem.getCourseSemester());%></option>
                                                   <%}
+                             					 }
                              					 }
                              					 else{%>
                              					 <option></option>

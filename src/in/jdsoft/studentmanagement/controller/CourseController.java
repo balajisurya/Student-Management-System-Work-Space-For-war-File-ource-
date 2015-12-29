@@ -41,6 +41,7 @@ public class CourseController {
      */
 	 
     public void addCourse(Courses c){
+    	int courseId=0;
     	try{
     	DBConnection courseSc=(DBConnection) sc.getAttribute("dbConn");
     	courseConn=courseSc.getDBConnection();
@@ -51,7 +52,11 @@ public class CourseController {
     	courseStmt.setString(4,c.getCourseDescription());
     	courseStmt.setString(5,c.getCourseImage());
     	courseStmt.execute();
-    	new CourseSemesterController().addCourseSemesters();
+    	courseRs=courseStmt.getGeneratedKeys();
+    		if(courseRs.next()){
+    			courseId=courseRs.getInt(1);
+    		}
+    	new CourseSemesterController().addCourseSemesters(courseId);
     	}
     	catch(Exception e){ 
     		System.out.println("Exception in Add Course of course controller "+e);
